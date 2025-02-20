@@ -100,6 +100,7 @@ namespace PCGamingWikiMetadata
             string os = "";
             string rating32 = "";
             string rating64 = "";
+            string ratingARM = "";
 
             foreach (HtmlNode row in rows)
             {
@@ -115,9 +116,13 @@ namespace PCGamingWikiMetadata
                             {
                                 rating32 = child.FirstChild.Attributes["title"].Value;
                             }
-                            else
+                            else if (rating64 == "")
                             {
                                 rating64 = child.FirstChild.Attributes["title"].Value;
+                            }
+                            else
+                            {
+                                ratingARM = child.FirstChild.Attributes["title"].Value;
                             }
                             break;
                         case "table-settings-api-body-notes":
@@ -125,10 +130,11 @@ namespace PCGamingWikiMetadata
                     }
                 }
 
-                this.gameController.AddArchitectureBitWidth(os, rating32, rating64);
+                this.gameController.AddArchitecture(os, rating32, rating64, ratingARM);
                 os = "";
                 rating32 = "";
                 rating64 = "";
+                ratingARM = "";
             }
         }
 
@@ -137,6 +143,7 @@ namespace PCGamingWikiMetadata
             var rows = SelectTableRowsByClass("table-api", "template-infotable-body table-api-body-row");
             string api = "";
             string version = "";
+            string rating = "";
 
             foreach (HtmlNode row in rows)
             {
@@ -148,16 +155,25 @@ namespace PCGamingWikiMetadata
                             api = child.FirstChild.InnerText.Trim();
                             break;
                         case "table-api-body-support":
-                            version = child.InnerText.Trim();
+                            if (child.FirstChild.NodeType == HtmlNodeType.Text)
+                            {
+                                version = child.InnerText.Trim();
+                            }
+                            else
+                            {
+                                rating = child.FirstChild.Attributes["title"].Value;
+                            }
+
                             break;
                         case "table-settings-api-body-notes":
                             break;
                     }
                 }
 
-                this.gameController.AddRenderingAPI(api, version);
+                this.gameController.AddRenderingAPI(api, version, rating);
                 api = "";
                 version = "";
+                rating = "";
             }
         }
 

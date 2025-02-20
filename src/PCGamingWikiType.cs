@@ -1,3 +1,5 @@
+using System.CodeDom;
+
 namespace PCGamingWikiType
 {
     public class Rating
@@ -65,6 +67,7 @@ namespace PCGamingWikiType
         public const string RenderingAPI = "Rendering API";
         public const string Bit64 = "64-bit";
         public const string Bit32 = "32-bit";
+        public const string ARM = "ARM";
     }
 
     public class VRHeadsets

@@ -189,6 +189,11 @@ namespace PCGamingWikiMetadata
             AddTag($"{os} 64-bit");
         }
 
+        public void SetARM(string os)
+        {
+            AddTag($"{os} ARM");
+        }
+
         public void SetFramerate60()
         {
             AddFeature("60 FPS");

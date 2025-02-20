@@ -45,6 +45,8 @@ namespace PCGamingWikiMetadata
         public bool ImportTag32Bit { get { return importTag32Bit; } set { importTag32Bit = value; ; NotifyPropertyChanged("ImportTag32Bit"); } }
         private bool importTag64Bit = false;
         public bool ImportTag64Bit { get { return importTag64Bit; } set { importTag64Bit = value; ; NotifyPropertyChanged("ImportTag64Bit"); } }
+        private bool importTagARM = false;
+        public bool ImportTagARM { get { return importTagARM; } set { importTagARM = value; ; NotifyPropertyChanged("ImportTagARM"); } }
 
         private bool importXboxPlayAnywhere = true;
         public bool ImportXboxPlayAnywhere { get { return importXboxPlayAnywhere; } set { importXboxPlayAnywhere = value; ; NotifyPropertyChanged("ImportXboxPlayAnywhere"); } }
@@ -173,6 +175,7 @@ namespace PCGamingWikiMetadata
                 ImportTagRenderingAPI = savedSettings.ImportTagRenderingAPI;
                 ImportTag32Bit = savedSettings.ImportTag32Bit;
                 ImportTag64Bit = savedSettings.ImportTag64Bit;
+                ImportTag64Bit = savedSettings.ImportTagARM;
 
                 ImportFeatureHDR = savedSettings.ImportFeatureHDR;
                 ImportFeatureRayTracing = savedSettings.ImportFeatureRayTracing;

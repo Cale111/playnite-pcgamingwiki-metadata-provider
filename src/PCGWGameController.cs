@@ -190,7 +190,7 @@ namespace PCGamingWikiMetadata
             }
         }
 
-        public void AddArchitectureBitWidth(string os, string rating32, string rating64)
+        public void AddArchitecture(string os, string rating32, string rating64, string ratingARM)
         {
             if (IsSettingDisabled(PCGamingWikiType.API.Bit32))
             {
@@ -211,16 +211,33 @@ namespace PCGamingWikiMetadata
             {
                 this.Game.Set64Bit(os);
             }
+
+            if (IsSettingDisabled(PCGamingWikiType.API.ARM))
+            {
+                return;
+            }
+
+            if (NativeOrLimitedSupport(ratingARM))
+            {
+                this.Game.SetARM(os);
+            }
         }
 
-        public void AddRenderingAPI(string api, string version)
+        public void AddRenderingAPI(string api, string version, string rating)
         {
             if (IsSettingDisabled(PCGamingWikiType.API.RenderingAPI))
             {
                 return;
             }
 
-            this.Game.AddTag($"{api} {version}");
+            if (rating == "")
+            {
+                this.Game.AddTag($"{api} {version}");
+            }
+            else if (NativeOrLimitedSupport(rating))
+            {
+                this.Game.AddTag(api);
+            }
         }
 
         public void AddVRFeature(string headset, string rating)
