@@ -1,4 +1,5 @@
 using System;
+using System.Web;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using System.Text.RegularExpressions;
@@ -157,7 +158,7 @@ namespace PCGamingWikiMetadata
                         case "table-api-body-support":
                             if (child.FirstChild.NodeType == HtmlNodeType.Text)
                             {
-                                version = child.InnerText.Trim();
+                                version = HttpUtility.HtmlDecode(child.InnerText.Trim());
                             }
                             else
                             {
