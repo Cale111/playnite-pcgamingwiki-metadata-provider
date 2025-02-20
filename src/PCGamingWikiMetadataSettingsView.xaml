@@ -202,13 +202,7 @@
                         <CheckBox IsChecked="{Binding ImportTagRenderingAPI}" Content="{DynamicResource LOCPCGWSettingsImportTagRenderingAPI}"/>
                     </StackPanel>
                     <StackPanel Margin="5">
-                        <CheckBox IsChecked="{Binding ImportTag32Bit}" Content="{DynamicResource LOCPCGWSettingsImportTag32Bit}"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <CheckBox IsChecked="{Binding ImportTag64Bit}" Content="{DynamicResource LOCPCGWSettingsImportTag64Bit}"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <CheckBox IsChecked="{Binding ImportTagARM}" Content="{DynamicResource LOCPCGWSettingsImportTagARM}"/>
+                        <CheckBox IsChecked="{Binding ImportTagArchitecture}" Content="{DynamicResource LOCPCGWSettingsImportTagArchitecture}"/>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

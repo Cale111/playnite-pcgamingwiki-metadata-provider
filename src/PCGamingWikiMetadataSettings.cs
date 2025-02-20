@@ -41,12 +41,8 @@ namespace PCGamingWikiMetadata
         public bool ImportTagNoCloudSaves { get { return importTagNoCloudSaves; } set { importTagNoCloudSaves = value; ; NotifyPropertyChanged("ImportTagNoCloudSaves"); } }
         private bool importTagRenderingAPI = false;
         public bool ImportTagRenderingAPI { get { return importTagRenderingAPI; } set { importTagRenderingAPI = value; ; NotifyPropertyChanged("ImportTagRenderingAPI"); } }
-        private bool importTag32Bit = false;
-        public bool ImportTag32Bit { get { return importTag32Bit; } set { importTag32Bit = value; ; NotifyPropertyChanged("ImportTag32Bit"); } }
-        private bool importTag64Bit = false;
-        public bool ImportTag64Bit { get { return importTag64Bit; } set { importTag64Bit = value; ; NotifyPropertyChanged("ImportTag64Bit"); } }
-        private bool importTagARM = false;
-        public bool ImportTagARM { get { return importTagARM; } set { importTagARM = value; ; NotifyPropertyChanged("ImportTagARM"); } }
+        private bool importTagArchitecture = false;
+        public bool ImportTagArchitecture { get { return importTagArchitecture; } set { importTagArchitecture = value; ; NotifyPropertyChanged("ImportTagArchitecture"); } }
 
         private bool importXboxPlayAnywhere = true;
         public bool ImportXboxPlayAnywhere { get { return importXboxPlayAnywhere; } set { importXboxPlayAnywhere = value; ; NotifyPropertyChanged("ImportXboxPlayAnywhere"); } }
@@ -173,9 +169,7 @@ namespace PCGamingWikiMetadata
                 ImportTagArtStyle = savedSettings.ImportTagArtStyle;
                 ImportTagNoCloudSaves = savedSettings.ImportTagNoCloudSaves;
                 ImportTagRenderingAPI = savedSettings.ImportTagRenderingAPI;
-                ImportTag32Bit = savedSettings.ImportTag32Bit;
-                ImportTag64Bit = savedSettings.ImportTag64Bit;
-                ImportTag64Bit = savedSettings.ImportTagARM;
+                ImportTagArchitecture = savedSettings.ImportTagArchitecture;
 
                 ImportFeatureHDR = savedSettings.ImportFeatureHDR;
                 ImportFeatureRayTracing = savedSettings.ImportFeatureRayTracing;

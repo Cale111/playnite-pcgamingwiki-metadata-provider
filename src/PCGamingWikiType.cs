@@ -65,9 +65,7 @@ namespace PCGamingWikiType
     public class API
     {
         public const string RenderingAPI = "Rendering API";
-        public const string Bit64 = "64-bit";
-        public const string Bit32 = "32-bit";
-        public const string ARM = "ARM";
+        public const string Architecture = "Architecture";
     }
 
     public class VRHeadsets

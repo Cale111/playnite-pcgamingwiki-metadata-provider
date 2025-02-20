@@ -31,7 +31,7 @@ namespace PCGamingWikiMetadata
             ParseMultiplayer();
             ParseVideo();
             ParseRenderingAPI();
-            ParseArchitectureBitWidth();
+            ParseArchitecture();
             ParseVR();
         }
 
@@ -95,49 +95,56 @@ namespace PCGamingWikiMetadata
             return false;
         }
 
-        private void ParseArchitectureBitWidth()
+        private void ParseArchitecture()
         {
-            var rows = SelectTableRowsByClass("table-api-executable", "template-infotable-body table-api-body-row");
-            string os = "";
-            string rating32 = "";
-            string rating64 = "";
-            string ratingARM = "";
+            var tableId = "table-api-executable";
 
+            var headerRows = SelectTableRowsByClass(tableId, "template-infotable-head table-api-head-row");
+            HtmlNode headerRow = headerRows.Count > 0 ? headerRows[0] : null;
+
+            var archMapping = new Dictionary<int, string>();
+
+            int colIndex = 0;
+            foreach (HtmlNode header in headerRow.SelectNodes(".//th"))
+            {
+                if (header.Attributes["class"].Value == "table-api-head-support")
+                {
+                    string archName = header.InnerText.Trim();
+
+                    HtmlNode abbrNode = header.SelectSingleNode(".//abbr");
+                    if (abbrNode != null)
+                    {
+                        archName = abbrNode.InnerText.Trim();
+                    }
+                    archMapping[colIndex] = archName;
+                }
+                colIndex++;
+            }
+            var rows = SelectTableRowsByClass(tableId, "template-infotable-body table-api-body-row");
             foreach (HtmlNode row in rows)
             {
-                foreach (HtmlNode child in row.SelectNodes(".//th|td"))
+                string os = "";
+                var ratings = new Dictionary<string, string>();
+
+                int currentIndex = 0;
+                foreach (HtmlNode cell in row.SelectNodes(".//th|td"))
                 {
-                    switch (child.Attributes["class"].Value)
+                    if (cell.Attributes["class"].Value == "table-api-body-parameter")
                     {
-                        case "table-api-body-parameter":
-                            os = child.FirstChild.InnerText.Trim();
-                            break;
-                        case "table-api-body-support":
-                            if (rating32 == "")
-                            {
-                                rating32 = child.FirstChild.Attributes["title"].Value;
-                            }
-                            else if (rating64 == "")
-                            {
-                                rating64 = child.FirstChild.Attributes["title"].Value;
-                            }
-                            else
-                            {
-                                ratingARM = child.FirstChild.Attributes["title"].Value;
-                            }
-                            break;
-                        case "table-settings-api-body-notes":
-                            break;
+                        os = cell.FirstChild.InnerText.Trim();
                     }
+                    else if (cell.Attributes["class"].Value == "table-api-body-support" && archMapping.ContainsKey(currentIndex))
+                    {
+                        string rating = cell.FirstChild.Attributes["title"].Value;
+                        ratings[archMapping[currentIndex]] = rating;
+                    }
+                    currentIndex++;
                 }
 
-                this.gameController.AddArchitecture(os, rating32, rating64, ratingARM);
-                os = "";
-                rating32 = "";
-                rating64 = "";
-                ratingARM = "";
+                this.gameController.AddArchitecture(os, ratings);
             }
         }
+
 
         private void ParseRenderingAPI()
         {

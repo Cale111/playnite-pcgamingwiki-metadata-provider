@@ -179,19 +179,9 @@ namespace PCGamingWikiMetadata
             }
         }
 
-        public void Set32Bit(string os)
+        public void SetArchitecture(string os, string architecture)
         {
-            AddTag($"{os} 32-bit");
-        }
-
-        public void Set64Bit(string os)
-        {
-            AddTag($"{os} 64-bit");
-        }
-
-        public void SetARM(string os)
-        {
-            AddTag($"{os} ARM");
+            AddTag($"{os} {architecture}");
         }
 
         public void SetFramerate60()
