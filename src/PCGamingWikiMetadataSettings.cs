@@ -39,6 +39,8 @@ namespace PCGamingWikiMetadata
         public bool ImportTagArtStyle { get { return importTagArtStyle; } set { importTagArtStyle = value; ; NotifyPropertyChanged("ImportTagArtStyle"); } }
         private bool importTagNoCloudSaves = true;
         public bool ImportTagNoCloudSaves { get { return importTagNoCloudSaves; } set { importTagNoCloudSaves = value; ; NotifyPropertyChanged("ImportTagNoCloudSaves"); } }
+        private bool importTagRenderingAPI = false;
+        public bool ImportTagRenderingAPI { get { return importTagRenderingAPI; } set { importTagRenderingAPI = value; ; NotifyPropertyChanged("ImportTagRenderingAPI"); } }
 
         private bool importXboxPlayAnywhere = true;
         public bool ImportXboxPlayAnywhere { get { return importXboxPlayAnywhere; } set { importXboxPlayAnywhere = value; ; NotifyPropertyChanged("ImportXboxPlayAnywhere"); } }
@@ -164,6 +166,7 @@ namespace PCGamingWikiMetadata
                 ImportTagThemes = savedSettings.ImportTagThemes;
                 ImportTagArtStyle = savedSettings.ImportTagArtStyle;
                 ImportTagNoCloudSaves = savedSettings.ImportTagNoCloudSaves;
+                ImportTagRenderingAPI = savedSettings.ImportTagRenderingAPI;
 
                 ImportFeatureHDR = savedSettings.ImportFeatureHDR;
                 ImportFeatureRayTracing = savedSettings.ImportFeatureRayTracing;

@@ -47,6 +47,7 @@ namespace PCGamingWikiMetadata
                 { PCGamingWikiType.Video.FPS120Plus, new Func<bool>( () => this.settings.ImportFeatureFramerate120) },
                 { PCGamingWikiType.Video.FPS60, new Func<bool>( () => this.settings.ImportFeatureFramerate60) },
                 { PCGamingWikiType.Video.Ultrawide, new Func<bool>( () => this.settings.ImportFeatureUltrawide) },
+                { PCGamingWikiType.API.RenderingAPI, new Func<bool>( () => this.settings.ImportTagRenderingAPI) },
                 { PCGamingWikiType.Video.VR, new Func<bool>( () => this.settings.ImportFeatureVR) },
                 { PCGamingWikiType.VRHeadsets.HTCVive, new Func<bool>( () => this.settings.ImportFeatureVRHTCVive) },
                 { PCGamingWikiType.VRHeadsets.OculusRift, new Func<bool>( () => this.settings.ImportFeatureVROculusRift) },
@@ -185,6 +186,16 @@ namespace PCGamingWikiMetadata
                         break;
                 }
             }
+        }
+
+        public void AddRenderingAPI(string api, string version)
+        {
+            if (IsSettingDisabled(PCGamingWikiType.API.RenderingAPI))
+            {
+                return;
+            }
+
+            this.Game.AddTag($"{api} {version}");
         }
 
         public void AddVRFeature(string headset, string rating)

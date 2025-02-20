@@ -29,6 +29,7 @@ namespace PCGamingWikiMetadata
             ParseCloudSync();
             ParseMultiplayer();
             ParseVideo();
+            ParseRenderingAPI();
             ParseVR();
         }
 
@@ -72,7 +73,7 @@ namespace PCGamingWikiMetadata
 
             if (table != null)
             {
-                return table.SelectNodes($"//tr[@class='{rowClass}']");
+                return table.SelectNodes($".//tr[@class='{rowClass}']");
             }
 
             return new List<HtmlNode>();
@@ -90,6 +91,35 @@ namespace PCGamingWikiMetadata
             }
 
             return false;
+        }
+
+        private void ParseRenderingAPI()
+        {
+            var rows = SelectTableRowsByClass("table-api", "template-infotable-body table-api-body-row");
+            string api = "";
+            string version = "";
+
+            foreach (HtmlNode row in rows)
+            {
+                foreach (HtmlNode child in row.SelectNodes(".//th|td"))
+                {
+                    switch (child.Attributes["class"].Value)
+                    {
+                        case "table-api-body-parameter":
+                            api = child.FirstChild.InnerText.Trim();
+                            break;
+                        case "table-api-body-support":
+                            version = child.InnerText.Trim();
+                            break;
+                        case "table-settings-api-body-notes":
+                            break;
+                    }
+                }
+
+                this.gameController.AddRenderingAPI(api, version);
+                api = "";
+                version = "";
+            }
         }
 
         private void ParseVR()
