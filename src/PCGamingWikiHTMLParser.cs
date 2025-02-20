@@ -30,6 +30,7 @@ namespace PCGamingWikiMetadata
             ParseMultiplayer();
             ParseVideo();
             ParseRenderingAPI();
+            ParseArchitectureBitWidth();
             ParseVR();
         }
 
@@ -91,6 +92,44 @@ namespace PCGamingWikiMetadata
             }
 
             return false;
+        }
+
+        private void ParseArchitectureBitWidth()
+        {
+            var rows = SelectTableRowsByClass("table-api-executable", "template-infotable-body table-api-body-row");
+            string os = "";
+            string rating32 = "";
+            string rating64 = "";
+
+            foreach (HtmlNode row in rows)
+            {
+                foreach (HtmlNode child in row.SelectNodes(".//th|td"))
+                {
+                    switch (child.Attributes["class"].Value)
+                    {
+                        case "table-api-body-parameter":
+                            os = child.FirstChild.InnerText.Trim();
+                            break;
+                        case "table-api-body-support":
+                            if (rating32 == "")
+                            {
+                                rating32 = child.FirstChild.Attributes["title"].Value;
+                            }
+                            else
+                            {
+                                rating64 = child.FirstChild.Attributes["title"].Value;
+                            }
+                            break;
+                        case "table-settings-api-body-notes":
+                            break;
+                    }
+                }
+
+                this.gameController.AddArchitectureBitWidth(os, rating32, rating64);
+                os = "";
+                rating32 = "";
+                rating64 = "";
+            }
         }
 
         private void ParseRenderingAPI()

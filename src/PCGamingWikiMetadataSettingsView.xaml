@@ -201,6 +201,12 @@
                     <StackPanel Margin="5">
                         <CheckBox IsChecked="{Binding ImportTagRenderingAPI}" Content="{DynamicResource LOCPCGWSettingsImportTagRenderingAPI}"/>
                     </StackPanel>
+                    <StackPanel Margin="5">
+                        <CheckBox IsChecked="{Binding ImportTag32Bit}" Content="{DynamicResource LOCPCGWSettingsImportTag32Bit}"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <CheckBox IsChecked="{Binding ImportTag64Bit}" Content="{DynamicResource LOCPCGWSettingsImportTag64Bit}"/>
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </TabItem>

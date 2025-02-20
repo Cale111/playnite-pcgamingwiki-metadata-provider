@@ -179,6 +179,16 @@ namespace PCGamingWikiMetadata
             }
         }
 
+        public void Set32Bit(string os)
+        {
+            AddTag($"{os} 32-bit");
+        }
+
+        public void Set64Bit(string os)
+        {
+            AddTag($"{os} 64-bit");
+        }
+
         public void SetFramerate60()
         {
             AddFeature("60 FPS");

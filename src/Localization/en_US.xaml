@@ -16,6 +16,8 @@
     <sys:String x:Key="LOCPCGWSettingsImportTagArtStyle">Art Style</sys:String>
     <sys:String x:Key="LOCPCGWSettingsImportTagNoCloudSaves">Add tag for games that don't support cloud saves</sys:String>
     <sys:String x:Key="LOCPCGWSettingsImportTagRenderingAPI">Rendering API</sys:String>
+    <sys:String x:Key="LOCPCGWSettingsImportTag32Bit">32-bit</sys:String>
+    <sys:String x:Key="LOCPCGWSettingsImportTag64Bit">64-bit</sys:String>
     <sys:String x:Key="LOCPCGWSettingsAddTagsPrefix">Add type prefix for enabled tags</sys:String>
     <sys:String x:Key="LOCPCGWSettingsTaxonomyTags">Taxonomy Tags</sys:String>
     <sys:String x:Key="LOCPCGWSettingsOtherTags">Other Tags</sys:String>

@@ -48,6 +48,8 @@ namespace PCGamingWikiMetadata
                 { PCGamingWikiType.Video.FPS60, new Func<bool>( () => this.settings.ImportFeatureFramerate60) },
                 { PCGamingWikiType.Video.Ultrawide, new Func<bool>( () => this.settings.ImportFeatureUltrawide) },
                 { PCGamingWikiType.API.RenderingAPI, new Func<bool>( () => this.settings.ImportTagRenderingAPI) },
+                { PCGamingWikiType.API.Bit32, new Func<bool>( () => this.settings.ImportTag32Bit) },
+                { PCGamingWikiType.API.Bit64, new Func<bool>( () => this.settings.ImportTag64Bit) },
                 { PCGamingWikiType.Video.VR, new Func<bool>( () => this.settings.ImportFeatureVR) },
                 { PCGamingWikiType.VRHeadsets.HTCVive, new Func<bool>( () => this.settings.ImportFeatureVRHTCVive) },
                 { PCGamingWikiType.VRHeadsets.OculusRift, new Func<bool>( () => this.settings.ImportFeatureVROculusRift) },
@@ -185,6 +187,29 @@ namespace PCGamingWikiMetadata
                     case PCGamingWikiType.Rating.Unknown:
                         break;
                 }
+            }
+        }
+
+        public void AddArchitectureBitWidth(string os, string rating32, string rating64)
+        {
+            if (IsSettingDisabled(PCGamingWikiType.API.Bit32))
+            {
+                return;
+            }
+
+            if (NativeOrLimitedSupport(rating32))
+            {
+                this.Game.Set32Bit(os);
+            }
+
+            if (IsSettingDisabled(PCGamingWikiType.API.Bit64))
+            {
+                return;
+            }
+
+            if (NativeOrLimitedSupport(rating64))
+            {
+                this.Game.Set64Bit(os);
             }
         }
 
